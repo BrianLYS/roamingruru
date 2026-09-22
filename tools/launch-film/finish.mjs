@@ -1,0 +1,13 @@
+import {spawnSync} from 'node:child_process';import {writeFileSync} from 'node:fs';import {DURATION,lines,opening,technical} from './timeline.mjs';
+if(lines.some(l=>!l.file))throw new Error('Approved dialogue audio missing');
+const args=['-y','-hide_banner','-loglevel','warning','-i','.local/launch-film/picture.mp4','-i','.local/launch-film/original-score.wav'];
+for(const l of lines)args.push('-i',l.file);
+const filters=['[0:v]scale=1920:1080[v]','[1:a]volume=0.9[music]'];
+for(let i=0;i<lines.length;i++)filters.push(`[${i+2}:a]atempo=${lines[i].playbackRate},loudnorm=I=-17:TP=-2:LRA=9,adelay=${Math.round(lines[i].start*1000)}:all=1[voice${i}]`);
+filters.push(`[music]${lines.map((_,i)=>`[voice${i}]`).join('')}amix=inputs=${lines.length+1}:normalize=0:dropout_transition=0,alimiter=limit=0.9,apad,atrim=duration=${DURATION}[a]`);
+args.push('-filter_complex',filters.join(';'),'-map','[v]','-map','[a]','-c:v','libx264','-crf','18','-preset','fast','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-ar','48000','-t',String(DURATION),'-movflags','+faststart','.local/launch-film/roaminglulu-launch.mp4');
+const r=spawnSync('ffmpeg',args,{stdio:'inherit'});if(r.status!==0)process.exit(r.status??1);
+const stamp=t=>{const ms=Math.round(t*1000);return `${String(Math.floor(ms/3600000)).padStart(2,'0')}:${String(Math.floor(ms/60000)%60).padStart(2,'0')}:${String(Math.floor(ms/1000)%60).padStart(2,'0')}.${String(ms%1000).padStart(3,'0')}`};
+const cues=[...opening.map(l=>({...l,caption:l.text+(l.source?'\n'+l.source:'')})),...lines.map(l=>({...l,caption:l.speaker+': '+l.text})),...technical.map(l=>({...l,caption:l.text+'\n'+l.detail}))].sort((a,b)=>a.start-b.start);
+writeFileSync('.local/launch-film/captions.vtt','WEBVTT\n\n'+cues.map(l=>`${stamp(l.start)} --> ${stamp(l.end)}\n${l.caption}\n`).join('\n'));
+writeFileSync('.local/launch-film/production-receipt.json',JSON.stringify({duration:DURATION,width:1920,height:1080,renderer:'Original JavaScript SVG scenes, Sharp, ffmpeg',technical,story:'Brian-approved mall traffic and store sales opening, Lulu introduction, two visits with umbrella and running event',opening,originalIllustrations:true,originalMusic:true,externalReferenceFootageUsed:false,dialogue:lines,capability:'Animated marketing story; no live transaction or product recording',emailSent:false,profileWrites:false},null,2));

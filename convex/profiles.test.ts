@@ -1,0 +1,51 @@
+import { convexTest } from 'convex-test';
+import { expect, test, vi } from 'vitest';
+import schema from './schema';
+import { internal } from './_generated/api';
+const modules = import.meta.glob('./**/*.ts');
+const ownerHash = 'c'.repeat(64);
+const profile = { name: 'Synthetic visitor', interest: 'yoga' as const, garment: 'top' as const, color: 'blue' as const, style: 'active' as const };
+const contact = { consent: true as const, emailCiphertext: 'synthetic-encrypted-data', emailDigest: 'synthetic-digest', keyVersion: 1 as const, emailHint: 'q•••@example.invalid' };
+test('profile and active subscription are isolated, independently removable, and reject delayed consent after removal', async () => {
+  const t = convexTest(schema, modules); const session = { ownerHash, expiresAt: Date.now() + 86400000 }; const initial = { ...session, version: 0 };
+  expect((await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).profile).toBeNull();
+  expect(await t.run(ctx => ctx.db.query('visitorSessions').collect())).toHaveLength(0);
+  expect(await t.mutation(internal.profiles.save, { ...initial, consent: true, profile })).toEqual({ status: 'saved' });
+  await t.mutation(internal.profiles.register, { ...initial, ...contact });
+  await t.mutation(internal.profiles.register, { ...initial, ...contact });
+  expect(await t.run(ctx => ctx.db.query('mailingRequests').collect())).toHaveLength(1);
+  expect(await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).toEqual({ personal:null,face:null,profile, profileVersion: 0, newsletterVersion: 0, newsletter: { status: 'active', emailHint: contact.emailHint } });
+  await t.mutation(internal.memory.save, { ownerHash, interest: 'running', version: 0 });
+  expect((await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).profile?.interest).toBe('running');
+  await t.mutation(internal.memory.save, { ownerHash, interest: 'yoga', version: 0 });
+  expect((await t.query(internal.profiles.read, { ownerHash: 'd'.repeat(64) })).profile).toBeNull();
+  await t.mutation(internal.profiles.clear, initial);
+  expect(await t.query(internal.memory.inspect, { ownerHash })).toMatchObject({ state: 'empty', version: 1 });
+  expect((await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).newsletter).not.toBeNull();
+  expect(await t.mutation(internal.profiles.save, { ...initial, consent: true, profile })).toEqual({ status: 'stale' });
+  expect(await t.mutation(internal.memory.consent, { ...session, version: 0, interest: 'running' })).toEqual({ state: 'changed' });
+  await t.mutation(internal.profiles.save, { ...session, version: 1, consent: true, profile });
+  await t.mutation(internal.profiles.unsubscribe, initial);
+  expect(await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).toEqual({ personal:null,face:null,profile, profileVersion: 1, newsletterVersion: 1, newsletter: null });
+  expect(await t.mutation(internal.profiles.register, { ...initial, ...contact })).toEqual({ status: 'stale' });
+  await t.mutation(internal.profiles.register, { ...session, version: 1, ...contact });
+  await t.mutation(internal.memory.forget, session);
+  expect(await t.mutation(internal.profiles.save, { ...session, version: 1, consent: true, profile })).toEqual({ status: 'stale' });
+  expect(await t.mutation(internal.profiles.register, { ...session, version: 1, ...contact })).toEqual({ status: 'saved' });
+  expect(await t.run(async ctx => ({ profiles: (await ctx.db.query('styleProfiles').collect()).length, contacts: (await ctx.db.query('mailingRequests').collect()).length, interests: (await ctx.db.query('visitorMemories').collect()).length }))).toEqual({ profiles: 0, contacts: 1, interests: 0 });
+});
+test('fixed expiry cleans all saved scopes and rejects malformed consent/profile', async () => {
+  vi.useFakeTimers();
+  try {
+    const t = convexTest(schema, modules); const session = { ownerHash, expiresAt: Date.now() + 1000, version: 0 };
+    await expect(t.mutation(internal.profiles.save, { ...session, consent: true, profile: { ...profile, name: 'x'.repeat(41) } })).rejects.toThrow();
+    await expect(t.mutation(internal.profiles.save, { ...session, consent: false as never, profile })).rejects.toThrow();
+    await t.mutation(internal.profiles.save, { ...session, consent: true, profile });
+    await t.mutation(internal.profiles.register, { ...session, ...contact });
+    vi.setSystemTime(session.expiresAt + 1);
+    expect((await t.query(internal.profiles.read, { ownerHash, now: Date.now() })).profile).toBeNull();
+    await t.finishAllScheduledFunctions(vi.runAllTimers);
+    const remaining = await t.run(async ctx => Promise.all([ctx.db.query('styleProfiles').collect(), ctx.db.query('mailingRequests').collect(), ctx.db.query('visitorSessions').collect()]));
+    expect(remaining).toEqual([[], [], []]);
+  } finally { vi.useRealTimers(); }
+});

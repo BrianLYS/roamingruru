@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["server/sites/worker.ts", "server/sites/sanitizeFrame.ts"],
+  "exclude": ["**/*.test.ts"]
+}

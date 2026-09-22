@@ -1,0 +1,74 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.000
+Indoor mall visits rose 5% year over year in August 2026.
+Source: Placer.ai, August 2026 Mall Index
+
+00:00:06.000 --> 00:00:13.000
+How can malls turn that growing foot traffic into more sales for the businesses inside?
+
+00:00:13.000 --> 00:00:17.000
+Meet Ruru—a friendly robot resident of the mall.
+
+00:00:17.000 --> 00:00:22.000
+She gets to know shoppers and connects them with stores, offers and events they’d love.
+
+00:00:22.000 --> 00:00:25.788
+Ruru: Hello! I haven’t seen you here before. What’s your name?
+
+00:00:26.438 --> 00:00:27.430
+Brian: My name’s Brian!
+
+00:00:28.080 --> 00:00:34.428
+Ruru: Hi Brian! You look drenched. You can get an umbrella at 7-Eleven. Have a discount on me!
+
+00:00:35.078 --> 00:00:38.239
+Brian: Thanks! I was out for a run and got caught in the rain.
+
+00:00:38.889 --> 00:00:41.397
+Ruru: Well, let’s get you dry first!
+
+00:00:46.447 --> 00:00:49.137
+Ruru: Hey Brian! You don’t look as wet today.
+
+00:00:49.787 --> 00:00:52.635
+Brian: Your umbrella was so helpful. Thanks so much!
+
+00:00:53.285 --> 00:00:55.636
+Ruru: You’re welcome! Been out running again?
+
+00:00:56.286 --> 00:00:58.558
+Brian: Yes! Much better weather this time.
+
+00:00:59.208 --> 00:01:04.694
+Ruru: Then you might like this. Lululemon’s having an event today. Come check it out!
+
+00:01:05.344 --> 00:01:09.053
+Ruru: By the way, you’re not on the mailing list. Want to be added?
+
+00:01:09.703 --> 00:01:11.114
+Brian: Yeah, I’d love that!
+
+00:01:11.764 --> 00:01:14.455
+Ruru: Scan my face. I’ll keep you posted!
+
+00:01:30.605 --> 00:01:32.407
+Brian: Good looking out, Ruru!
+
+00:01:33.057 --> 00:01:34.781
+Ruru: That’s what I’m here for!
+
+00:02:02.631 --> 00:02:05.635
+Ruru: Hello! I haven’t seen you here before.
+
+00:02:11.000 --> 00:02:16.000
+Perception & memory
+Camera + microphone · OpenAI · Face matching · Convex
+
+00:02:16.000 --> 00:02:21.000
+Agent tools
+remember_person · find_in_mall · Firecrawl
+
+00:02:21.000 --> 00:02:26.000
+Voice & movement
+ElevenLabs · Three.js pathfinding · show_mailing_qr · AgentMail

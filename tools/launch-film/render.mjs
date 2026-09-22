@@ -1,0 +1,7 @@
+import sharp from 'sharp';import {writeFileSync,mkdirSync,readdirSync,unlinkSync} from 'node:fs';import {spawn} from 'node:child_process';import {frame,FPS,DURATION,keyTimes} from './film.mjs';
+mkdirSync('.local/launch-film/keyframes',{recursive:true});
+if(process.argv.includes('--stills')){for(const f of readdirSync('.local/launch-film/keyframes'))if(f.startsWith('story-'))unlinkSync('.local/launch-film/keyframes/'+f);for(const t of keyTimes()){await sharp(Buffer.from(frame(t))).png().toFile(`.local/launch-film/keyframes/story-${t.toFixed(2)}.png`);}console.log('Story keyframes rendered');process.exit(0);}
+const encoder=spawn('ffmpeg',['-y','-hide_banner','-loglevel','warning','-f','image2pipe','-framerate',String(FPS),'-i','pipe:0','-an','-c:v','libx264','-preset','fast','-crf','19','-pix_fmt','yuv420p','.local/launch-film/picture.mp4'],{stdio:['pipe','inherit','inherit']});
+const complete=new Promise((res,rej)=>encoder.on('exit',c=>c===0?res():rej(Error(`ffmpeg ${c}`))));
+for(let i=0;i<DURATION*FPS;i+=6){const frames=await Promise.all(Array.from({length:Math.min(6,DURATION*FPS-i)},(_,j)=>sharp(Buffer.from(frame((i+j)/FPS))).png().toBuffer()));for(const buf of frames)if(!encoder.stdin.write(buf))await new Promise(r=>encoder.stdin.once('drain',r));if(i%300===0)console.log(`${Math.round(i/FPS)} / ${DURATION}s`);}
+encoder.stdin.end();await complete;console.log('Picture rendered');

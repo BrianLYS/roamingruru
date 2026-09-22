@@ -1,0 +1,226 @@
+.shortlist {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #d6ddce;
+  border-radius: 12px;
+  background: #f6f8f1;
+  color: #243426;
+}
+
+.shortlist__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.shortlist__eyebrow {
+  display: block;
+  color: #58704d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.shortlist__heading h3 {
+  margin: 4px 0 0;
+  color: #263d29;
+  font: 600 19px/1.3 inherit;
+  letter-spacing: -.25px;
+}
+
+.shortlist__count {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: #e6ecde;
+  color: #52634d;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.shortlist__intro,
+.shortlist__status {
+  margin: 9px 0 0;
+  color: #53614f;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.shortlist__status a {
+  color: #315b37;
+  text-underline-offset: 3px;
+}
+
+.shortlist__status--error { color: #8a3f35; }
+.shortlist__text-button {
+  min-height: 28px;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: 600 12px/1.4 inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.shortlist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.shortlist__primary,
+.shortlist__secondary {
+  min-height: 40px;
+  padding: 9px 13px;
+  border: 1px solid #345c38;
+  border-radius: 7px;
+  font: 600 13px/1.2 inherit;
+  cursor: pointer;
+}
+
+.shortlist__primary { background: #345c38; color: #fff; }
+.shortlist__secondary { margin-top: 14px; background: #fff; color: #345c38; }
+.shortlist__actions .shortlist__secondary { margin-top: 0; }
+.shortlist__primary:disabled { cursor: default; opacity: .55; }
+
+.shortlist__items {
+  display: grid;
+  gap: 9px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: shortlist;
+}
+
+.shortlist__items li {
+  position: relative;
+  padding: 13px 13px 12px 38px;
+  border: 1px solid #dce3d5;
+  border-radius: 8px;
+  background: #fff;
+  counter-increment: shortlist;
+}
+
+.shortlist__items li::before {
+  content: counter(shortlist);
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e6ecde;
+  color: #45603e;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.shortlist__items a {
+  color: #315b37;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-underline-offset: 3px;
+}
+
+.shortlist__items p {
+  margin: 5px 0 7px;
+  color: #5a6755;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.shortlist__items small {
+  color: #6d7868;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.shortlist__email {
+  margin-top: 14px;
+  padding-top: 13px;
+  border: 0;
+  border-top: 1px solid #dce3d5;
+}
+
+.shortlist__email > summary {
+  min-height: 38px;
+  color: #315b37;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.shortlist__email form > p,
+.shortlist__email-unavailable {
+  margin: 7px 0 12px;
+  color: #5a6755;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.shortlist__email-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #3c5038;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.shortlist__email-field input {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid #b9c5b1;
+  border-radius: 7px;
+  background: #fff;
+  color: #243426;
+  font: 400 14px/1.2 inherit;
+}
+
+.shortlist__email-field input:focus {
+  outline: 2px solid #557d4e;
+  outline-offset: 1px;
+}
+
+.shortlist__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 12px 0;
+  color: #455640;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.shortlist__consent input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: #3d6b42;
+}
+
+.shortlist__email-unavailable { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+  .shortlist { padding: 16px 15px; }
+  .shortlist__heading h3 { font-size: 18px; }
+  .shortlist__actions { display: grid; }
+  .shortlist__primary,
+  .shortlist__secondary { width: 100%; }
+  .shortlist__items li { padding-right: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shortlist *, .shortlist *::before, .shortlist *::after { transition: none !important; }
+}

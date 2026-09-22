@@ -1,0 +1,50 @@
+.how-lulu-works{max-width:1080px;margin:80px auto 12px;padding-top:56px;border-top:1px solid var(--line);min-width:0}
+.how-lulu-heading{max-width:660px}
+.how-lulu-heading h2{margin:12px 0 16px;font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-1.6px;line-height:1.12}
+.how-lulu-heading>p{margin:0;font-size:18px;line-height:1.65;color:var(--muted);max-width:570px}
+.lulu-anatomy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center;margin:36px 0 44px;padding:24px 38px;background:#edeee4;border-radius:22px}
+.lulu-diagram-wrap{position:relative;max-width:440px;width:100%;margin:auto}
+.lulu-diagram{display:block;width:100%;height:auto;overflow:visible}
+.diagram-line{stroke:#9fa68d;stroke-width:1.3;fill:none}
+.diagram-dot{fill:#9fa68d}
+.is-screen .diagram-screen-line,.is-camera .diagram-camera-line,.is-base .diagram-base-line{stroke:#586748;stroke-width:2.5}
+.is-screen .diagram-screen-dot,.is-camera .diagram-camera-dot,.is-base .diagram-base-dot{fill:#586748}
+.is-camera .diagram-camera{filter:drop-shadow(0 0 5px #acc89f)}
+.lulu-part-buttons{position:absolute;inset:0;pointer-events:none}
+.lulu-part-button{position:absolute;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;padding:9px 12px;border:1px solid #c4cab7;background:#fbfbf4;color:#546047;border-radius:8px;font-size:14px;pointer-events:auto;box-shadow:0 3px 9px #3e492406}
+.lulu-part-button[aria-pressed=true]{background:#536449;color:#fffdf3;border-color:#536449}
+.lulu-part-button:hover{box-shadow:0 3px 12px #3e492418}
+.part-screen{left:0;top:47%}.part-camera{right:0;top:29%}.part-base{right:0;top:59%}
+.lulu-part-explanation{min-height:242px;padding:18px 0}
+.lulu-part-label{display:block;color:#69765a;font-size:13px;letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.lulu-part-explanation h3{font-size:clamp(24px,2.5vw,32px);font-weight:500;letter-spacing:-.9px;line-height:1.2;margin:15px 0}
+.lulu-part-explanation>p{font-size:16px;line-height:1.8;color:#4b5742;margin:0 0 18px;max-width:470px}
+.lulu-part-explanation .lulu-part-connection{font-size:15px;line-height:1.75;margin:22px 0 0;padding-top:18px;border-top:1px solid #cfd4c3;color:#637054}
+.lulu-journey{list-style:none;padding:0;margin:0 0 48px;display:block}
+.lulu-journey li{display:grid;grid-template-columns:42px minmax(180px,.8fr) minmax(0,1.4fr);gap:24px;align-items:baseline;padding:24px 0;border-top:1px solid var(--line)}
+.lulu-step-number{font-size:14px;letter-spacing:1px;color:#59654e;display:block}
+.lulu-journey h3{font-size:20px;line-height:1.4;font-weight:600;letter-spacing:-.3px;margin:0}
+.lulu-journey p{font-size:16px;line-height:1.75;color:#4b5742;margin:0;max-width:52ch}
+.lulu-under-hood{padding:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lulu-under-hood>summary{display:flex;align-items:center;justify-content:space-between;gap:20px;list-style:none;font-size:20px;padding:26px 0;color:var(--ink);font-weight:500}
+.lulu-under-hood summary::-webkit-details-marker{display:none}
+.lulu-expand-label{font-size:13px;color:var(--muted);font-weight:400;display:flex;gap:15px;align-items:center}
+.lulu-expand-label>span{font-size:22px;font-weight:300}
+.lulu-under-hood[open]>summary .lulu-expand-label>span{transform:rotate(45deg)}
+.lulu-under-hood-content{padding-bottom:24px}
+.lulu-tools-intro{font-size:16px;line-height:1.75;color:var(--muted);margin:0 0 22px;max-width:660px}
+.lulu-tool-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;align-items:start}
+.lulu-tool{padding:0 20px;border:1px solid #dfe2d4;border-radius:12px;background:#fffef8}
+.lulu-tool>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:15px 0;list-style:none;min-height:48px;color:#45583b}
+.lulu-tool code{font-size:15px;overflow-wrap:anywhere}
+.lulu-tool>summary>span{font-size:18px;line-height:1}
+.lulu-tool[open]>summary>span{transform:rotate(45deg)}
+.lulu-tool>p{font-size:16px;color:var(--muted);line-height:1.75;margin:0 20px 18px 0}
+.lulu-integrations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 32px;margin-top:28px;padding:25px 0;border-top:1px solid var(--line)}
+.lulu-integrations strong{font-weight:600;font-size:17px;display:block;margin-bottom:6px}
+.lulu-integrations span{font-size:15px;color:var(--muted);line-height:1.6;display:block}
+.lulu-email-note{font-size:14px;max-width:68ch;line-height:1.75;margin:0;color:var(--muted)}
+@media(min-width:701px) and (prefers-reduced-motion:no-preference){.diagram-eyes{transform-origin:190px 115px;animation:lulu-explainer-blink 5.5s infinite}@keyframes lulu-explainer-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.1)}}}
+@media(max-width:1000px){.lulu-anatomy{padding:24px;gap:26px}.lulu-part-explanation{min-height:275px}.lulu-part-button{gap:6px;padding:8px 10px}}
+@media(max-width:700px){.how-lulu-works{margin-top:40px;padding-top:34px}.how-lulu-heading h2{letter-spacing:-1px}.how-lulu-heading>p{font-size:16px}.lulu-anatomy{grid-template-columns:minmax(0,1fr);gap:6px;margin:24px 0 32px;padding:18px;border-radius:16px}.lulu-diagram-wrap{max-width:360px}.lulu-part-explanation{min-height:265px;padding:12px 4px 10px}.lulu-part-explanation h3{font-size:26px}.lulu-part-explanation>p{font-size:16px;line-height:1.75}.lulu-part-explanation .lulu-part-connection{margin-top:18px;padding-top:14px}.lulu-part-label{font-size:12px}.lulu-journey{grid-template-columns:1fr;gap:0;margin-bottom:26px}.lulu-journey li{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;padding:19px 0;border-top:1px solid var(--line)}.lulu-step-number{grid-row:1 / 3;margin:3px 0 0}.lulu-journey h3{margin:0 0 7px;font-size:19px}.lulu-journey p{grid-column:2;font-size:16px}.lulu-under-hood>summary{font-size:18px;gap:12px}.lulu-expand-label{font-size:12px;gap:8px}.lulu-tool-list{grid-template-columns:1fr}.lulu-integrations{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.lulu-tool code{font-size:14px}}
+@media(max-width:360px){.lulu-part-button{font-size:12px;gap:6px;padding:8px}.lulu-anatomy{padding:12px}.lulu-expand-label{font-size:0}.lulu-expand-label>span{font-size:22px}}

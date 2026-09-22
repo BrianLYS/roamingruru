@@ -1,0 +1,114 @@
+[
+  {
+    "id": 0,
+    "speaker": "Ruru",
+    "text": "Hello! I haven’t seen you here before. What’s your name?",
+    "file": ".local/launch-film/selected-audio/00-lulu-introduction.mp3",
+    "duration": 3.787755
+  },
+  {
+    "id": 1,
+    "speaker": "Brian",
+    "text": "My name’s Brian!",
+    "file": ".local/launch-film/selected-audio/01-brian-name.mp3",
+    "duration": 0.992653
+  },
+  {
+    "id": 2,
+    "speaker": "Ruru",
+    "text": "Hi Brian! You look drenched. You can get an umbrella at 7-Eleven. Have a discount on me!",
+    "file": ".local/launch-film/selected-audio/02-lulu-umbrella.mp3",
+    "duration": 6.347755
+  },
+  {
+    "id": 3,
+    "speaker": "Brian",
+    "text": "Thanks! I was out for a run and got caught in the rain.",
+    "file": ".local/launch-film/selected-audio/03-brian-rain.mp3",
+    "duration": 3.160816
+  },
+  {
+    "id": 4,
+    "speaker": "Ruru",
+    "text": "Well, let’s get you dry first!",
+    "file": ".local/launch-film/selected-audio/04-lulu-dry-first.mp3",
+    "duration": 2.507755
+  },
+  {
+    "id": 5,
+    "speaker": "Ruru",
+    "text": "Hey Brian! You don’t look as wet today.",
+    "file": ".local/launch-film/selected-audio/05-lulu-second-visit.mp3",
+    "duration": 2.690612
+  },
+  {
+    "id": 6,
+    "speaker": "Brian",
+    "text": "Your umbrella was so helpful. Thanks so much!",
+    "file": ".local/launch-film/selected-audio/06-brian-umbrella-thanks.mp3",
+    "duration": 2.847347
+  },
+  {
+    "id": 7,
+    "speaker": "Ruru",
+    "text": "You’re welcome! Been out running again?",
+    "file": ".local/launch-film/selected-audio/07-lulu-running-again.mp3",
+    "duration": 2.35102
+  },
+  {
+    "id": 8,
+    "speaker": "Brian",
+    "text": "Yes! Much better weather this time.",
+    "file": ".local/launch-film/selected-audio/08-brian-better-weather.mp3",
+    "duration": 2.272653
+  },
+  {
+    "id": 9,
+    "speaker": "Ruru",
+    "text": "Then you might like this. Lululemon’s having an event today. Come check it out!",
+    "file": ".local/launch-film/selected-audio/09-lulu-event.mp3",
+    "duration": 5.485714
+  },
+  {
+    "id": 10,
+    "speaker": "Brian",
+    "text": "Good looking out, Ruru!",
+    "file": ".local/launch-film/ruru-audio/10-brian-good-looking-out.mp3",
+    "duration": 1.802449
+  },
+  {
+    "id": 11,
+    "speaker": "Ruru",
+    "text": "That’s what I’m here for!",
+    "file": ".local/launch-film/selected-audio/11-lulu-here-for.mp3",
+    "duration": 1.724082
+  },
+  {
+    "id": 12,
+    "speaker": "Ruru",
+    "text": "Hello! I haven’t seen you here before.",
+    "file": ".local/launch-film/selected-audio/12-lulu-closing.mp3",
+    "duration": 3.004082
+  },
+  {
+    "id": 14,
+    "speaker": "Brian",
+    "text": "Yeah, I’d love that!",
+    "file": ".local/launch-film/qr-audio/14.mp3",
+    "duration": 1.410612
+  },
+  {
+    "id": 15,
+    "speaker": "Ruru",
+    "text": "Scan my face. I’ll keep you posted!",
+    "file": ".local/launch-film/qr-audio/15.mp3",
+    "duration": 2.690612
+  },
+  {
+    "id": 13,
+    "speaker": "Ruru",
+    "text": "By the way, you’re not on the mailing list. Want to be added?",
+    "file": ".local/launch-film/qr-natural-audio/13.mp3",
+    "duration": 3.709388
+  }
+]
