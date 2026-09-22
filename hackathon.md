@@ -172,3 +172,7 @@ Recorded actual Lulu-led conversation and official discovery, with generated Jes
 
 ### 2026-09-22 — animated launch film replacement
 Brian rejected the walkthrough. Replaced it with an86-second original JavaScript-animated launch film, original synthesized score, existing verified Lulu voice and14seconds of actual product proof. Embedded locally below the encounter; no public upload/submission or new provider calls. Evidence/source: `docs/style-profile-result.md`, `tools/launch-film/`.
+
+### 2026-09-22 — public RoamingRuru release
+Renamed the character and project, simplified the conversation UI and added the mailing QR tool, an inline presentation and an original JavaScript launch film. The final170second film includes a real recorded QR interaction after Behind the scenes.90unit tests and the Sites build pass; desktop/mobile navigation, film and signup journeys pass.
+Published the current app on ChatGPT Sites and a clean public source snapshot under BrianLYS. Anonymous conversation status returns200/live. A real hosted request displayed the QR face and opened the empty signup form; no email submitted. Luma shows registration confirmed. Social post and hackathon submission are being finalized.
